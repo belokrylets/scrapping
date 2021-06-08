@@ -1,7 +1,7 @@
 # scrapping
 node-js скрипт на базе Puppeteer, осуществляющий сбор объявлений с авито.
 
-Входные данные - ссылка на страницу с объявлениями (https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV?metro=2137&pmax=10000)
+Входные данные - ссылка на страницу с объявлениями (https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV?metro=2137)
 
 Результат - json файл с массивом объявлений
 

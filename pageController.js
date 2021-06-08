@@ -8,7 +8,6 @@ async function scrapeAll(browserInstance){
         let scrapedData = {};
         scrapedData['interface Advert'] = await pageScraper.scraper(browser);
         await browser.close();
-        console.log(scrapedData)
         fs.writeFile("data.json", JSON.stringify(scrapedData, null, 2), 'utf8', function(err) {
             if(err) {
                 return console.log(err);

@@ -1,5 +1,5 @@
 const scraperObject = {
-    url: 'https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV?metro=2137&pmax=10000',
+    url: 'https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV?metro=2137',
     async scraper(browser){
         let page = await browser.newPage();
         console.log(`Переход на ${this.url}...`);
