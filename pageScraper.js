@@ -1,9 +1,10 @@
 const scraperObject = {
-    url: 'https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV',
+    url: 'https://www.avito.ru/sankt-peterburg/koshki/poroda-meyn-kun-ASgBAgICAUSoA5IV?metro=2137&pmax=10000',
     async scraper(browser){
         let page = await browser.newPage();
         console.log(`Переход на ${this.url}...`);
         await page.goto(this.url);
+        let scrapedData = [];
         await page.waitForSelector('.items-items-38oUm');
        
         let urls = await page.$$eval('.iva-item-content-m2FiN', links => {
@@ -17,11 +18,11 @@ const scraperObject = {
             let newPage = await browser.newPage();
             await newPage.goto(link);
             dataObj['title'] = await newPage.$eval('.title-info-title > span', text => text.textContent);
-            dataObj['description'] = await newPage.$eval('.item-description-text > p', text => text.textContent);
+            dataObj['description'] = await newPage.$eval('.item-description-text > p', description => description.textContent);
             dataObj['url'] = link;
-            dataObj['price'] = await newPage.$eval('.price-value-string > span', text => text.textContent);
-            dataObj['author'] = await newPage.$eval('.sticky-header-prop > span', text => text.textContent);
-            dataObj['date'] = await newPage.$eval('.title-info-metadata-item-redesign', text => text.textContent);
+            dataObj['price'] = await newPage.$eval('.price-value-string', price => Number(price.textContent.trim().replace(/[^\d]+/g,""))) 
+            dataObj['author'] = await newPage.$eval('.sticky-header-prop > span', author => author.textContent);
+            dataObj['date'] = await newPage.$eval('.title-info-metadata-item-redesign', date => date.textContent.trim());
             
             
             resolve(dataObj);
@@ -30,9 +31,9 @@ const scraperObject = {
 
         for(link in urls){
             let currentPageData = await pagePromise(urls[link]);
-            console.log(currentPageData);
+            scrapedData.push(currentPageData);
         }
-
+        return scrapedData;
     }
 }
 
