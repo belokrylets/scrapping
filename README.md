@@ -5,6 +5,7 @@ node-js скрипт на базе Puppeteer, осуществляющий сб�
 
 Результат - json файл с массивом объявлений
 
+```typescript
 interface Advert {
   title: string;
   description: string;
@@ -14,3 +15,4 @@ interface Advert {
   date: string; // ISO-8601
   phone: string;
 }
+```
