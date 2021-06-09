@@ -16,3 +16,7 @@ interface Advert {
   phone: string;
 }
 ```
+
+Запуск: npm run start
+
+Рузултат созраняется в файл date.json
